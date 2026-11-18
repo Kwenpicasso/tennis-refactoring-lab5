@@ -1,3 +1,6 @@
+SCORE_NAMES = {0: "Love", 1: "Fifteen", 2: "Thirty", 3: "Forty"}
+
+
 class TennisGame1:
     def __init__(self, player1_name, player2_name):
         self.player1_name = player1_name
@@ -19,11 +22,9 @@ class TennisGame1:
         return self._regular_score()
 
     def _equal_score(self):
-        return {
-            0: "Love-All",
-            1: "Fifteen-All",
-            2: "Thirty-All",
-        }.get(self.p1points, "Deuce")
+        if self.p1points < 3:
+            return SCORE_NAMES[self.p1points] + "-All"
+        return "Deuce"
 
     def _endgame_score(self):
         minus_result = self.p1points - self.p2points
@@ -44,10 +45,5 @@ class TennisGame1:
             else:
                 result += "-"
                 temp_score = self.p2points
-            result += {
-                0: "Love",
-                1: "Fifteen",
-                2: "Thirty",
-                3: "Forty",
-            }[temp_score]
+            result += SCORE_NAMES[temp_score]
         return result
