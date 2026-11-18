@@ -37,13 +37,4 @@ class TennisGame1:
         return "Win for player2"
 
     def _regular_score(self):
-        result = ""
-        temp_score = 0
-        for i in range(1, 3):
-            if i == 1:
-                temp_score = self.p1points
-            else:
-                result += "-"
-                temp_score = self.p2points
-            result += SCORE_NAMES[temp_score]
-        return result
+        return f"{SCORE_NAMES[self.p1points]}-{SCORE_NAMES[self.p2points]}"
